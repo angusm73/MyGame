@@ -43,7 +43,7 @@ namespace MyGame
                     break;
                 
                 default:
-                    Console.WriteLine("I notice that a key has been pressed, but I am not sure how to handle it.");
+                    WriteLog test = new WriteLog("Main/KeyDown", "I am not sure what I am supposed to do when you press " + e.Key);
                     break;
             }
         }
