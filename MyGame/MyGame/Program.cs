@@ -58,7 +58,15 @@ namespace MyGame
         /// <param name="e">Not used.</param>
         protected override void OnLoad(EventArgs e)
         {
-            GL.ClearColor(Color.MidnightBlue);
+            base.OnLoad(e);
+
+            Title = "My OpenTK Game";
+
+            GL.ClearColor(Color.CornflowerBlue);
+            GL.Disable(EnableCap.DepthTest);
+            GL.Clear(ClearBufferMask.DepthBufferBit);
+            GL.Enable(EnableCap.Blend);
+            GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
         }
 
         #endregion
@@ -106,32 +114,77 @@ namespace MyGame
         {
             GL.Clear(ClearBufferMask.ColorBufferBit);
             
-            // Shape 1 (Right Triangle)
-            GL.Begin(PrimitiveType.Triangles);
+            // Shape 1 (Menu text background)
+            DrawSquare(-1.0f, -1.0f, 0.6f, 2.0f, 0.4f);
 
-            GL.Color3(Color.MidnightBlue);
-            GL.Vertex2(0.0f, 0.0f);
-            GL.Color3(Color.SpringGreen);
-            GL.Vertex2(1.0f, -1.0f);
-            GL.Color3(Color.Ivory);
-            GL.Vertex2(1.0f, 1.0f);
+            // Game Logo
+            DrawSquare(-1.0f, 0.8f, 0.6f, 0.2f, 0.5f);
 
-            GL.End();
+            // Menu Item 1
+            DrawSquare(-0.95f, -0.55f, 0.5f, 0.15f, 0.5f);
 
-            // Shape 2 (Left Triangle)
-            GL.Begin(PrimitiveType.Triangles);
-
-            GL.Color3(Color.MidnightBlue);
-            GL.Vertex2(0.0f, 0.0f);
-            GL.Color3(Color.Ivory);
-            GL.Vertex2(-1.0f, -1.0f);
-            GL.Color3(Color.SpringGreen);
-            GL.Vertex2(-1.0f, 1.0f);
-
-            GL.End();
+            // Menu Item 2
+            DrawSquare(-0.95f, -0.75f, 0.5f, 0.15f, 0.5f);
+            
+            // Menu Item 3
+            DrawSquare(-0.95f, -0.95f, 0.5f, 0.15f, 0.5f);
+            
+            // Testing shit
+            // DrawCircle(0.0f, 0.0f, 0.7f, 1000);
 
             this.SwapBuffers();
         }
+
+        public void DrawSquare(float x, float y, float sx, float sy, float alpha)
+        {
+            GL.Begin(PrimitiveType.Quads);
+
+            GL.Color4(0f, 0f, 0f, alpha);
+            GL.Vertex2(x, y + sy);
+            GL.Vertex2(x, y);
+            GL.Vertex2(x + sx, y);
+            GL.Vertex2(x + sx, y + sy);
+
+            GL.End();
+        }
+
+        void DrawCircle(float cx, float cy, float r, int num_segments) 
+        { 
+	        double theta = 2 * 3.1415926 / Convert.ToDouble(num_segments);
+	        double c = Math.Cos(theta);
+	        double s = Math.Sin(theta);
+	        double t;
+            
+	        double x = r;//we start at angle = 0 
+	        double y = 0;
+    
+	        GL.Begin(PrimitiveType.LineLoop); 
+	        for(int ii = 0; ii < num_segments; ii++) 
+	        { 
+		        GL.Vertex2(x + cx, y + cy);//output vertex 
+        
+		        //apply the rotation matrix
+		        t = x;
+		        x = c * x - s * y;
+		        y = s * t + c * y;
+	        } 
+	        GL.End(); 
+        }
+
+        /* public void DrawCircle(float x, float y, float size, float alpha, float blur)
+        {
+            GL.Begin(PrimitiveType.LineLoop);
+
+            for (int i = 0; i <= 300; i++ )
+            {
+                double angle = 2 * Math.PI * i / 300;
+                double rx = Math.Cos(angle);
+                double ry = Math.Sin(angle);
+                GL.Vertex2(x+rx*size, y+ry*size);
+            }
+
+            GL.End();
+        } */
 
         #endregion
 
