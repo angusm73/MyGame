@@ -98,7 +98,22 @@ namespace MyGame
         /// <remarks>There is no need to call the base implementation.</remarks>
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
-            // Nothing to do, yet.
+            // Console.WriteLine(Mouse.X + ", " + Mouse.Y + " : " + this.Width + ", " + this.Height);
+            // Check the position of the mouse
+            double xper = (((Mouse.X - this.Width/2)*200)/this.Width)*0.01;
+            double yper = (((Mouse.Y - this.Height / 2) * 200) / this.Height) * -0.01;
+            if (xper >= -0.95f && xper <= -0.45f && yper >= -0.55 && yper <= -0.4)
+            {
+                WriteLog log = new WriteLog("Main/Update", "I see that you are hovering over Button 1");
+            }
+            else if (xper >= -0.95f && xper <= -0.45f && yper >= -0.75 && yper <= -0.6)
+            {
+                WriteLog log = new WriteLog("Main/Update", "I see that you are hovering over Button 2");
+            }
+            else if (xper >= -0.95f && xper <= -0.45f && yper >= -0.95 && yper <= -0.8)
+            {
+                WriteLog log = new WriteLog("Main/Update", "I see that you are hovering over Button 3");
+            }
         }
 
         #endregion
