@@ -122,7 +122,8 @@ namespace MyGame
             {
                 if (mouse[MouseButton.Left])
                 {
-                    WriteLog log = new WriteLog("Main/Update", "I see that you have clicked Button 3");
+                    WriteLog log = new WriteLog("Main/Update", "I see that you have clicked Button 3, I am now exiting.");
+                    this.Exit();
                 }
                 WriteLog log3 = new WriteLog("Main/Update", "I see that you are hovering over Button 3");
             }
