@@ -15,7 +15,7 @@ namespace MyGame
     // Not sure where the Example class comes from.
     public class MyGameWindow : GameWindow
     {
-        public MyGameWindow() : base(800, 600)
+        public MyGameWindow() : base(800, 600, new OpenTK.Graphics.GraphicsMode(32, 0, 0, 16))
         {
             KeyDown += Keyboard_KeyDown;
         }
@@ -147,7 +147,7 @@ namespace MyGame
             {
                 // Get the title and category  of this example using reflection.
                 // Utilities.SetWindowTitle(example);
-                example.Run(30.0, 0.0);
+                example.Run(60.0, 60.0);
             }
         }
 
