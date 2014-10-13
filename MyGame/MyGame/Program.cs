@@ -157,26 +157,6 @@ namespace MyGame
                 button.render();
             }
 
-            // DrawShape draw = new DrawShape();
-
-            // Shape 1 (Menu text background)
-            // draw.Square(-1.0f, -1.0f, 0.6f, 2.0f, 0.0f, 0.0f, 0.0f, 0.4f);
-
-            // Game Logo
-            // draw.Square(-1.0f, 0.8f, 0.6f, 0.2f, 0.0f, 0.0f, 0.0f, 0.5f);
-
-            // Menu Item 1
-            // draw.Square(-0.95f, -0.55f, 0.5f, 0.15f, 0.0f, 0.6f, 0.0f, 0.5f);
-
-            // Menu Item 2
-            // draw.Square(-0.95f, -0.75f, 0.5f, 0.15f, 0.0f, 0.0f, 0.6f, 0.5f);
-            
-            // Menu Item 3
-            // draw.Square(-0.95f, -0.95f, 0.5f, 0.15f, 0.6f, 0.0f, 0.0f, 0.5f);
-            
-            // Testing shit
-            // draw.Circle(0.0f, 0.0f, 0.7f, 1000);
-
             this.SwapBuffers();
         }
 
