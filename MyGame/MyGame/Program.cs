@@ -16,11 +16,13 @@ namespace MyGame
     public class MyGameWindow : GameWindow
     {
         private List<GObutton> menuButtons;
+        private List<GObutton> menuItems;
 
         public MyGameWindow() : base(800, 600, new OpenTK.Graphics.GraphicsMode(32, 0, 0, 16))
         {
             KeyDown += Keyboard_KeyDown;
             menuButtons = new List<GObutton>();
+            menuItems = new List<GObutton>();
         }
 
         #region Keyboard_KeyDown
@@ -71,8 +73,8 @@ namespace MyGame
             GL.Enable(EnableCap.Blend);
             GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
 
-            menuButtons.Add(new GObutton(-1.0f, -1.0f, 0.6f, 2.0f, 0.0f, 0.0f, 0.0f, 0.4f));
-            menuButtons.Add(new GObutton(-1.0f, 0.8f, 0.6f, 0.2f, 0.0f, 0.0f, 0.0f, 0.5f));
+            menuItems.Add(new GObutton(-1.0f, -1.0f, 0.6f, 2.0f, 0.0f, 0.0f, 0.0f, 0.4f));
+            menuItems.Add(new GObutton(-1.0f, 0.8f, 0.6f, 0.2f, 0.0f, 0.0f, 0.0f, 0.5f));
             menuButtons.Add(new GObutton(-0.95f, -0.55f, 0.5f, 0.15f, 0.0f, 0.6f, 0.0f, 0.5f));
             menuButtons.Add(new GObutton(-0.95f, -0.75f, 0.5f, 0.15f, 0.0f, 0.0f, 0.6f, 0.5f));
             menuButtons.Add(new GObutton(-0.95f, -0.95f, 0.5f, 0.15f, 0.6f, 0.0f, 0.0f, 0.5f));
@@ -110,10 +112,12 @@ namespace MyGame
             // Console.WriteLine(Mouse.X + ", " + Mouse.Y + " : " + this.Width + ", " + this.Height
             double xper = (((Mouse.X - this.Width / 2) * 200) / this.Width) * 0.01;
             double yper = (((Mouse.Y - this.Height / 2) * 200) / this.Height) * -0.01;
-            foreach (GObutton button in menuButtons)
+            menuButtons.ForEach(delegate(GObutton button)
             {
                 button.update(xper, yper);
-            }
+            });
+            // Menu items (background, title) do not need to be updated
+            // Menu items should be changed to another GameObject
         }
 
         #endregion
@@ -129,10 +133,15 @@ namespace MyGame
         {
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
-            foreach (GObutton button in menuButtons)
+            menuButtons.ForEach(delegate(GObutton button)
             {
                 button.render();
-            }
+            });
+
+            menuItems.ForEach(delegate(GObutton item)
+            {
+                item.render();
+            });
 
             this.SwapBuffers();
         }
