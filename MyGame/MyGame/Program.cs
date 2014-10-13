@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Collections.Generic;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
@@ -14,9 +15,12 @@ namespace MyGame
     // Not sure where the Example class comes from.
     public class MyGameWindow : GameWindow
     {
+        private List<GObutton> menuButtons;
+
         public MyGameWindow() : base(800, 600, new OpenTK.Graphics.GraphicsMode(32, 0, 0, 16))
         {
             KeyDown += Keyboard_KeyDown;
+            menuButtons = new List<GObutton>();
         }
 
         #region Keyboard_KeyDown
@@ -54,7 +58,7 @@ namespace MyGame
         /// <summary>
         /// Setup OpenGL and load resources here.
         /// </summary>
-        /// <param name="e">Not used.</param>
+        /// <param name="e">Not sure why this is used.</param>
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -66,6 +70,12 @@ namespace MyGame
             GL.Clear(ClearBufferMask.DepthBufferBit);
             GL.Enable(EnableCap.Blend);
             GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+
+            menuButtons.Add(new GObutton(-1.0f, -1.0f, 0.6f, 2.0f, 0.0f, 0.0f, 0.0f, 0.4f));
+            menuButtons.Add(new GObutton(-1.0f, 0.8f, 0.6f, 0.2f, 0.0f, 0.0f, 0.0f, 0.5f));
+            menuButtons.Add(new GObutton(-0.95f, -0.55f, 0.5f, 0.15f, 0.0f, 0.6f, 0.0f, 0.5f));
+            menuButtons.Add(new GObutton(-0.95f, -0.75f, 0.5f, 0.15f, 0.0f, 0.0f, 0.6f, 0.5f));
+            menuButtons.Add(new GObutton(-0.95f, -0.95f, 0.5f, 0.15f, 0.6f, 0.0f, 0.0f, 0.5f));
         }
 
         #endregion
@@ -142,43 +152,33 @@ namespace MyGame
         {
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
-            DrawShape draw = new DrawShape();
+            foreach (GObutton button in menuButtons)
+            {
+                button.render();
+            }
+
+            // DrawShape draw = new DrawShape();
 
             // Shape 1 (Menu text background)
-            draw.Square(-1.0f, -1.0f, 0.6f, 2.0f, 0.0f, 0.0f, 0.0f, 0.4f);
+            // draw.Square(-1.0f, -1.0f, 0.6f, 2.0f, 0.0f, 0.0f, 0.0f, 0.4f);
 
             // Game Logo
-            draw.Square(-1.0f, 0.8f, 0.6f, 0.2f, 0.0f, 0.0f, 0.0f, 0.5f);
+            // draw.Square(-1.0f, 0.8f, 0.6f, 0.2f, 0.0f, 0.0f, 0.0f, 0.5f);
 
             // Menu Item 1
-            draw.Square(-0.95f, -0.55f, 0.5f, 0.15f, 0.0f, 0.6f, 0.0f, 0.5f);
+            // draw.Square(-0.95f, -0.55f, 0.5f, 0.15f, 0.0f, 0.6f, 0.0f, 0.5f);
 
             // Menu Item 2
-            draw.Square(-0.95f, -0.75f, 0.5f, 0.15f, 0.0f, 0.0f, 0.6f, 0.5f);
+            // draw.Square(-0.95f, -0.75f, 0.5f, 0.15f, 0.0f, 0.0f, 0.6f, 0.5f);
             
             // Menu Item 3
-            draw.Square(-0.95f, -0.95f, 0.5f, 0.15f, 0.6f, 0.0f, 0.0f, 0.5f);
+            // draw.Square(-0.95f, -0.95f, 0.5f, 0.15f, 0.6f, 0.0f, 0.0f, 0.5f);
             
             // Testing shit
             // draw.Circle(0.0f, 0.0f, 0.7f, 1000);
 
             this.SwapBuffers();
         }
-
-        /* public void DrawCircle(float x, float y, float size, float alpha, float blur)
-        {
-            GL.Begin(PrimitiveType.LineLoop);
-
-            for (int i = 0; i <= 300; i++ )
-            {
-                double angle = 2 * Math.PI * i / 300;
-                double rx = Math.Cos(angle);
-                double ry = Math.Sin(angle);
-                GL.Vertex2(x+rx*size, y+ry*size);
-            }
-
-            GL.End();
-        } */
 
         #endregion
 
