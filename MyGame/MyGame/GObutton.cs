@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenTK;
+using OpenTK.Input;
 
 namespace MyGame
 {
@@ -13,9 +16,14 @@ namespace MyGame
 
         }
 
-        public override void update()
+        public override void update(double xper, double yper)
         {
-            // all the update shit for GObutton
+            var mouse = OpenTK.Input.Mouse.GetState();
+            //WriteLog log = new WriteLog("GameObject/Button", xper + ", " + yper);
+            if (xper >= x && xper <= x + sx && yper >= y && yper <= y + sy)
+            {
+                WriteLog log1 = new WriteLog("GameObject/Button", xper + ", " + yper);
+            }
         }
 
         public override void render()
