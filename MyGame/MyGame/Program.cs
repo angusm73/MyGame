@@ -111,9 +111,13 @@ namespace MyGame
         {
             double xper = (((Mouse.X - this.Width / 2) * 200) / this.Width) * 0.01;
             double yper = (((Mouse.Y - this.Height / 2) * 200) / this.Height) * -0.01;
+
+            int i = 0;
             menuButtons.ForEach(delegate(GObutton button)
             {
                 button.update(xper, yper);
+                button.buttonFunction(i);
+                i++;
             });
             // Menu items (background, title) do not need to be updated
             // Menu items should be changed to another GameObject
