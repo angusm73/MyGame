@@ -19,7 +19,6 @@ namespace MyGame
         public override void update(double xper, double yper)
         {
             var mouse = OpenTK.Input.Mouse.GetState();
-            //WriteLog log = new WriteLog("GameObject/Button", xper + ", " + yper);
             if (xper >= x && xper <= x + sx && yper >= y && yper <= y + sy)
             {
                 WriteLog log1 = new WriteLog("GameObject/Button", xper + ", " + yper);

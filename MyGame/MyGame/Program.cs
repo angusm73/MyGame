@@ -109,7 +109,6 @@ namespace MyGame
         /// <remarks>There is no need to call the base implementation.</remarks>
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
-            // Console.WriteLine(Mouse.X + ", " + Mouse.Y + " : " + this.Width + ", " + this.Height
             double xper = (((Mouse.X - this.Width / 2) * 200) / this.Width) * 0.01;
             double yper = (((Mouse.Y - this.Height / 2) * 200) / this.Height) * -0.01;
             menuButtons.ForEach(delegate(GObutton button)
