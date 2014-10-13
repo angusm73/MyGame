@@ -22,7 +22,7 @@ namespace MyGame
             this.a = a;
         }
 
-        public abstract void update();
+        public abstract void update(double x, double y);
 
         public abstract void render();
     }
