@@ -21,7 +21,7 @@ namespace MyGame
             var mouse = OpenTK.Input.Mouse.GetState();
             if (xper >= x && xper <= x + sx && yper >= y && yper <= y + sy)
             {
-                WriteLog log1 = new WriteLog("GameObject/Button", this.ToString());
+                // WriteLog log1 = new WriteLog("GameObject/Button", this.ToString());
             }
         }
 
@@ -39,14 +39,18 @@ namespace MyGame
                 case 0:
                     WriteLog log0 = new WriteLog("GameObject/Button", "1");
                     break;
+
                 // Options
                 case 1:
                     WriteLog log1 = new WriteLog("GameObject/Button", "2");
                     break;
+
                 // Exit
                 case 2:
                     WriteLog log2 = new WriteLog("GameObject/Button", "3");
+                    MyGameWindow.exit = true;
                     break;
+
                 default:
                     break;
             }

@@ -17,6 +17,7 @@ namespace MyGame
     {
         private List<GObutton> menuButtons;
         private List<GObutton> menuItems;
+        public static bool exit = false;
 
         public MyGameWindow() : base(800, 600, new OpenTK.Graphics.GraphicsMode(32, 0, 0, 16))
         {
@@ -37,7 +38,7 @@ namespace MyGame
             switch (e.Key)
             {
                 case (Key.Escape):
-                    this.Exit();
+                    exit = true;
                     break;
                 
                 case (Key.F11):
@@ -129,6 +130,13 @@ namespace MyGame
             });
             // Menu items (background, title) do not need to be updated
             // Menu items should be changed to another GameObject
+
+            // Check if the program should be closed
+            // Temp fix, I should change later
+            if (exit == true)
+            {
+                this.Exit();
+            }
         }
 
         #endregion
