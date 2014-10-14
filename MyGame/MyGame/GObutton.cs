@@ -57,7 +57,6 @@ namespace MyGame
                     else
                         MyGameWindow.winState = WindowState.Fullscreen;
                     break;
-                    break;
 
                 default:
                     break;
