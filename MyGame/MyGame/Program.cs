@@ -19,6 +19,8 @@ namespace MyGame
         private List<GObutton> menuItems;
         public static bool exit = false;
         public static WindowState winState = WindowState.Normal;
+        public static gameState currentGameState = gameState.Menu;
+        public enum gameState {Menu, Options, Game};
 
         public MyGameWindow() : base(800, 600, new OpenTK.Graphics.GraphicsMode(32, 0, 0, 16))
         {
@@ -36,21 +38,70 @@ namespace MyGame
         /// <param name="e">The key that was pressed.</param>
         void Keyboard_KeyDown(object sender, KeyboardKeyEventArgs e)
         {
-            switch (e.Key)
+            // TODO: make this better
+            switch (currentGameState)
             {
-                case (Key.Escape):
-                    exit = true;
+                case (gameState.Menu):
+                    switch (e.Key)
+                    {
+                        case (Key.Escape):
+                            exit = true;
+                            break;
+
+                        case (Key.F11):
+                            if (winState == WindowState.Fullscreen)
+                                winState = WindowState.Normal;
+                            else
+                                winState = WindowState.Fullscreen;
+                            break;
+
+                        default:
+                            WriteLog test = new WriteLog("Main/KeyDown", "I am not sure what I am supposed to do when you press " + e.Key);
+                            break;
+                    }
                     break;
-                
-                case (Key.F11):
-                    if (winState == WindowState.Fullscreen)
-                        winState = WindowState.Normal;
-                    else
-                        winState = WindowState.Fullscreen;
+
+                case (gameState.Options):
+                    switch (e.Key)
+                    {
+                        case (Key.Escape):
+                            currentGameState = gameState.Menu;
+                            break;
+
+                        case (Key.F11):
+                            if (winState == WindowState.Fullscreen)
+                                winState = WindowState.Normal;
+                            else
+                                winState = WindowState.Fullscreen;
+                            break;
+
+                        default:
+                            WriteLog test = new WriteLog("Main/KeyDown", "I am not sure what I am supposed to do when you press " + e.Key);
+                            break;
+                    }
                     break;
-                
+
+                case (gameState.Game):
+                    switch (e.Key)
+                    {
+                        case (Key.Escape):
+                            currentGameState = gameState.Menu;
+                            break;
+
+                        case (Key.F11):
+                            if (winState == WindowState.Fullscreen)
+                                winState = WindowState.Normal;
+                            else
+                                winState = WindowState.Fullscreen;
+                            break;
+
+                        default:
+                            WriteLog test = new WriteLog("Main/KeyDown", "I am not sure what I am supposed to do when you press " + e.Key);
+                            break;
+                    }
+                    break;
+
                 default:
-                    WriteLog test = new WriteLog("Main/KeyDown", "I am not sure what I am supposed to do when you press " + e.Key);
                     break;
             }
         }
@@ -117,19 +168,33 @@ namespace MyGame
             
             var mouse = OpenTK.Input.Mouse.GetState();
 
-            int i = 0;
-            menuButtons.ForEach(delegate(GObutton button)
+            switch (currentGameState)
             {
-                button.update(xper, yper);
-                if (mouse[MouseButton.Left])
-                {
-                    if (xper >= button.x && xper <= button.x + button.sx && yper >= button.y && yper <= button.y + button.sy)
-                    {
-                        button.buttonFunction(i);
-                    }
-                }
-                i++;
-            });
+                case (gameState.Menu):
+                    int i = 0;
+                    menuButtons.ForEach(delegate(GObutton button)
+                        {
+                        button.update(xper, yper);
+                        if (mouse[MouseButton.Left])
+                        {
+                            if (xper >= button.x && xper <= button.x + button.sx && yper >= button.y && yper <= button.y + button.sy)
+                            {
+                                button.buttonFunction(i);
+                            }
+                        }
+                        i++;
+                    });
+                    break;
+
+                case (gameState.Options):
+                    break;
+
+                case (gameState.Game):
+                    break;
+
+                default:
+                    break;
+            }
             // Menu items (background, title) do not need to be updated
             // Menu items should be changed to another GameObject
 
@@ -158,15 +223,29 @@ namespace MyGame
         {
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
-            menuButtons.ForEach(delegate(GObutton button)
+            switch (currentGameState)
             {
-                button.render();
-            });
+                case (gameState.Menu):
+                    menuItems.ForEach(delegate(GObutton item)
+                    {
+                        item.render();
+                    });
+                    menuButtons.ForEach(delegate(GObutton button)
+                    {
+                        button.render();
+                    });
+                    break;
 
-            menuItems.ForEach(delegate(GObutton item)
-            {
-                item.render();
-            });
+                case (gameState.Options):
+                    menuItems.ForEach(delegate(GObutton item)
+                    {
+                        item.render();
+                    });
+                    break;
+
+                case (gameState.Game):
+                    break;
+            }
 
             this.SwapBuffers();
         }

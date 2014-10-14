@@ -37,12 +37,12 @@ namespace MyGame
             {
                 // Start
                 case 0:
-                    WriteLog log0 = new WriteLog("GameObject/Button", "1");
+                    MyGameWindow.currentGameState = MyGameWindow.gameState.Game;
                     break;
 
                 // Options
                 case 1:
-                    WriteLog log1 = new WriteLog("GameObject/Button", "2");
+                    MyGameWindow.currentGameState = MyGameWindow.gameState.Options;
                     break;
 
                 // Exit
