@@ -13,7 +13,7 @@ namespace MyGame
     {
         public GObutton(float x, float y, float sx, float sy, float r, float g, float b, float a) : base(x, y, sx, sy, r, g, b, a)
         {
-
+            
         }
 
         public override void update(double xper, double yper)
@@ -47,8 +47,16 @@ namespace MyGame
 
                 // Exit
                 case 2:
-                    WriteLog log2 = new WriteLog("GameObject/Button", "3");
                     MyGameWindow.exit = true;
+                    break;
+                
+                // Fullscreen toggle
+                case 3:
+                    if (MyGameWindow.winState == WindowState.Fullscreen)
+                        MyGameWindow.winState = WindowState.Normal;
+                    else
+                        MyGameWindow.winState = WindowState.Fullscreen;
+                    break;
                     break;
 
                 default:

@@ -18,6 +18,7 @@ namespace MyGame
         private List<GObutton> menuButtons;
         private List<GObutton> menuItems;
         public static bool exit = false;
+        public static WindowState winState = WindowState.Normal;
 
         public MyGameWindow() : base(800, 600, new OpenTK.Graphics.GraphicsMode(32, 0, 0, 16))
         {
@@ -42,10 +43,10 @@ namespace MyGame
                     break;
                 
                 case (Key.F11):
-                    if (this.WindowState == WindowState.Fullscreen)
-                        this.WindowState = WindowState.Normal;
+                    if (winState == WindowState.Fullscreen)
+                        winState = WindowState.Normal;
                     else
-                        this.WindowState = WindowState.Fullscreen;
+                        winState = WindowState.Fullscreen;
                     break;
                 
                 default:
@@ -79,6 +80,7 @@ namespace MyGame
             menuButtons.Add(new GObutton(-0.95f, -0.55f, 0.5f, 0.15f, 0.0f, 0.6f, 0.0f, 0.5f));
             menuButtons.Add(new GObutton(-0.95f, -0.75f, 0.5f, 0.15f, 0.0f, 0.0f, 0.6f, 0.5f));
             menuButtons.Add(new GObutton(-0.95f, -0.95f, 0.5f, 0.15f, 0.6f, 0.0f, 0.0f, 0.5f));
+            menuButtons.Add(new GObutton(0.95f, 0.95f, 0.05f, 0.05f, 0.0f, 0.0f, 0.0f, 0.5f));
         }
 
         #endregion
@@ -136,6 +138,10 @@ namespace MyGame
             if (exit == true)
             {
                 this.Exit();
+            }
+            if (this.WindowState != winState)
+            {
+                this.WindowState = winState;
             }
         }
 
