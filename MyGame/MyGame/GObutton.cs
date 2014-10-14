@@ -5,12 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenTK;
+using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 
 namespace MyGame
 {
     class GObutton : GameObject
     {
+        Font font = new Font(FontFamily.GenericMonospace, 18.0f);
+        OpenTK.Graphics.TextPrinter tp = new OpenTK.Graphics.TextPrinter(OpenTK.Graphics.TextQuality.High);
+
         public GObutton(float x, float y, float sx, float sy, float r, float g, float b, float a) : base(x, y, sx, sy, r, g, b, a)
         {
             
@@ -29,6 +33,9 @@ namespace MyGame
         {
             DrawShape draw = new DrawShape();
             draw.Square(x, y, sx, sy, r, g, b, a);
+            tp.Begin();
+            tp.Print("MyGame", font, Color.White);
+            tp.End();
         }
 
         public void buttonFunction(int btnID)
