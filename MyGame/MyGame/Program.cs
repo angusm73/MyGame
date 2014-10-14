@@ -111,12 +111,20 @@ namespace MyGame
         {
             double xper = (((Mouse.X - this.Width / 2) * 200) / this.Width) * 0.01;
             double yper = (((Mouse.Y - this.Height / 2) * 200) / this.Height) * -0.01;
+            
+            var mouse = OpenTK.Input.Mouse.GetState();
 
             int i = 0;
             menuButtons.ForEach(delegate(GObutton button)
             {
                 button.update(xper, yper);
-                button.buttonFunction(i);
+                if (mouse[MouseButton.Left])
+                {
+                    if (xper >= button.x && xper <= button.x + button.sx && yper >= button.y && yper <= button.y + button.sy)
+                    {
+                        button.buttonFunction(i);
+                    }
+                }
                 i++;
             });
             // Menu items (background, title) do not need to be updated
