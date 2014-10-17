@@ -173,7 +173,7 @@ namespace MyGame
                 case (gameState.Menu):
                     int i = 0;
                     menuButtons.ForEach(delegate(GObutton button)
-                        {
+                    {
                         button.update(xper, yper);
                         if (mouse[MouseButton.Left])
                         {
@@ -214,6 +214,14 @@ namespace MyGame
 
         #region OnRenderFrame
 
+        private void renderGameObjects<T>(List<T> gameObjectList) where T : GameObject
+        {
+            foreach (GameObject go in gameObjectList)
+            {
+                go.render();
+            }
+        }
+
         /// <summary>
         /// Add your game rendering code here.
         /// </summary>
@@ -226,21 +234,12 @@ namespace MyGame
             switch (currentGameState)
             {
                 case (gameState.Menu):
-                    menuItems.ForEach(delegate(GOmenuElement item)
-                    {
-                        item.render();
-                    });
-                    menuButtons.ForEach(delegate(GObutton button)
-                    {
-                        button.render();
-                    });
+                    renderGameObjects(menuButtons);
+                    renderGameObjects(menuItems);
                     break;
 
                 case (gameState.Options):
-                    menuItems.ForEach(delegate(GOmenuElement item)
-                    {
-                        item.render();
-                    });
+                    renderGameObjects(menuItems);
                     break;
 
                 case (gameState.Game):

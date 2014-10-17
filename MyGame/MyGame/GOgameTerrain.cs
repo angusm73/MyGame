@@ -16,6 +16,7 @@ namespace MyGame
         public override void update(double x, double y)
         {
             // these are static objects at the moment that dont need to be updated just yet
+            // probably will need to add shit here for ground collision/physics
         }
 
         public override void render()
