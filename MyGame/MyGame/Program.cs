@@ -234,8 +234,8 @@ namespace MyGame
             switch (currentGameState)
             {
                 case (gameState.Menu):
-                    renderGameObjects(menuButtons);
                     renderGameObjects(menuItems);
+                    renderGameObjects(menuButtons);
                     break;
 
                 case (gameState.Options):
