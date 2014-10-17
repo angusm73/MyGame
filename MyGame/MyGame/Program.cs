@@ -16,7 +16,7 @@ namespace MyGame
     public class MyGameWindow : GameWindow
     {
         private List<GObutton> menuButtons;
-        private List<GObutton> menuItems;
+        private List<GOmenuElement> menuItems;
         public static bool exit = false;
         public static WindowState winState = WindowState.Normal;
         public static gameState currentGameState = gameState.Menu;
@@ -26,7 +26,7 @@ namespace MyGame
         {
             KeyDown += Keyboard_KeyDown;
             menuButtons = new List<GObutton>();
-            menuItems = new List<GObutton>();
+            menuItems = new List<GOmenuElement>();
         }
 
         #region Keyboard_KeyDown
@@ -126,8 +126,8 @@ namespace MyGame
             GL.Enable(EnableCap.Blend);
             GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
 
-            menuItems.Add(new GObutton(-1.0f, -1.0f, 0.6f, 2.0f, 0.0f, 0.0f, 0.0f, 0.4f));
-            menuItems.Add(new GObutton(-1.0f, 0.8f, 0.6f, 0.2f, 0.0f, 0.0f, 0.0f, 0.5f));
+            menuItems.Add(new GOmenuElement(-1.0f, -1.0f, 0.6f, 2.0f, 0.0f, 0.0f, 0.0f, 0.4f));
+            menuItems.Add(new GOmenuElement(-1.0f, 0.8f, 0.6f, 0.2f, 0.0f, 0.0f, 0.0f, 0.5f));
             menuButtons.Add(new GObutton(-0.95f, -0.55f, 0.5f, 0.15f, 0.0f, 0.6f, 0.0f, 0.5f));
             menuButtons.Add(new GObutton(-0.95f, -0.75f, 0.5f, 0.15f, 0.0f, 0.0f, 0.6f, 0.5f));
             menuButtons.Add(new GObutton(-0.95f, -0.95f, 0.5f, 0.15f, 0.6f, 0.0f, 0.0f, 0.5f));
@@ -226,7 +226,7 @@ namespace MyGame
             switch (currentGameState)
             {
                 case (gameState.Menu):
-                    menuItems.ForEach(delegate(GObutton item)
+                    menuItems.ForEach(delegate(GOmenuElement item)
                     {
                         item.render();
                     });
@@ -237,7 +237,7 @@ namespace MyGame
                     break;
 
                 case (gameState.Options):
-                    menuItems.ForEach(delegate(GObutton item)
+                    menuItems.ForEach(delegate(GOmenuElement item)
                     {
                         item.render();
                     });

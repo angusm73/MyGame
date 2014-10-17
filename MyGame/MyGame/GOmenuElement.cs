@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MyGame
 {
-    class GObutton : GameObject
+    class GOmenuElement : GameObject
     {
-        public GObutton(float x, float y, float sx, float sy, float r, float g, float b, float a) : base(x, y, sx, sy, r, g, b, a)
+        public GOmenuElement(float x, float y, float sx, float sy, float r, float g, float b, float a) : base(x, y, sx, sy, r, g, b, a)
         {
             // no need for this shit
         }
