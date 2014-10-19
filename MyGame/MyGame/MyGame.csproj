@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="DrawShape.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="GameTerrain.cs" />
     <Compile Include="GObutton.cs" />
     <Compile Include="GOgameTerrain.cs" />
     <Compile Include="GOmenuElement.cs" />

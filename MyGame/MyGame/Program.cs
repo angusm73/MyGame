@@ -139,25 +139,7 @@ namespace MyGame
             menuButtons.Add(new GObutton(-0.95f, -0.95f, 0.5f, 0.15f, 0.6f, 0.0f, 0.0f, 0.5f));
             menuButtons.Add(new GObutton(0.95f, 0.95f, 0.05f, 0.05f, 0.0f, 0.0f, 0.0f, 0.5f));
 
-            float maxHeight = 0.3f;
-            float maxDiff = 0.1f;
-            float oldHeight = 0.3f;
-            float newHeight = 0.0f;
-            bool flag = false;
-            for (int i = 0; i < 20; i++)
-            {
-                flag = false;
-                while (flag == false)
-                {
-                    newHeight = (float)rand.NextDouble();
-                    if (Math.Abs(Math.Abs(newHeight) - Math.Abs(oldHeight)) <= maxDiff && newHeight < maxHeight)
-                    {
-                        flag = true;
-                    }
-                }
-                gameTerrain.Add(new GOgameTerrain(-1+(i/10f), -1f, 0.1f, (newHeight+0.2f), 0.1f, 0.6f, 0.1f, 1.0f));
-                oldHeight = newHeight;
-            }
+            GameTerrain gt = new GameTerrain(ref gameTerrain);
         }
 
         #endregion
