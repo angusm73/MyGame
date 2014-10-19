@@ -139,7 +139,7 @@ namespace MyGame
             menuButtons.Add(new GObutton(-0.95f, -0.95f, 0.5f, 0.15f, 0.6f, 0.0f, 0.0f, 0.5f));
             menuButtons.Add(new GObutton(0.95f, 0.95f, 0.05f, 0.05f, 0.0f, 0.0f, 0.0f, 0.5f));
 
-            GameTerrain gt = new GameTerrain(ref gameTerrain);
+            GameTerrain gt = new GameTerrain(ref gameTerrain, 20, 0.1f);
         }
 
         #endregion
