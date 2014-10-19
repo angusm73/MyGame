@@ -17,16 +17,21 @@ namespace MyGame
     {
         private List<GObutton> menuButtons;
         private List<GOmenuElement> menuItems;
+        private List<GOgameTerrain> gameTerrain;
+        public enum gameState {Menu, Options, Game};
+
         public static bool exit = false;
         public static WindowState winState = WindowState.Normal;
         public static gameState currentGameState = gameState.Menu;
-        public enum gameState {Menu, Options, Game};
+
+        public Random rand = new Random();
 
         public MyGameWindow() : base(800, 600, new OpenTK.Graphics.GraphicsMode(32, 0, 0, 16))
         {
             KeyDown += Keyboard_KeyDown;
             menuButtons = new List<GObutton>();
             menuItems = new List<GOmenuElement>();
+            gameTerrain = new List<GOgameTerrain>();
         }
 
         #region Keyboard_KeyDown
@@ -128,10 +133,31 @@ namespace MyGame
 
             menuItems.Add(new GOmenuElement(-1.0f, -1.0f, 0.6f, 2.0f, 0.0f, 0.0f, 0.0f, 0.4f));
             menuItems.Add(new GOmenuElement(-1.0f, 0.8f, 0.6f, 0.2f, 0.0f, 0.0f, 0.0f, 0.5f));
+
             menuButtons.Add(new GObutton(-0.95f, -0.55f, 0.5f, 0.15f, 0.0f, 0.6f, 0.0f, 0.5f));
             menuButtons.Add(new GObutton(-0.95f, -0.75f, 0.5f, 0.15f, 0.0f, 0.0f, 0.6f, 0.5f));
             menuButtons.Add(new GObutton(-0.95f, -0.95f, 0.5f, 0.15f, 0.6f, 0.0f, 0.0f, 0.5f));
             menuButtons.Add(new GObutton(0.95f, 0.95f, 0.05f, 0.05f, 0.0f, 0.0f, 0.0f, 0.5f));
+
+            float maxHeight = 0.3f;
+            float maxDiff = 0.1f;
+            float oldHeight = 0.3f;
+            float newHeight = 0.0f;
+            bool flag = false;
+            for (int i = 0; i < 20; i++)
+            {
+                flag = false;
+                while (flag == false)
+                {
+                    newHeight = (float)rand.NextDouble();
+                    if (Math.Abs(Math.Abs(newHeight) - Math.Abs(oldHeight)) <= maxDiff && newHeight < maxHeight)
+                    {
+                        flag = true;
+                    }
+                }
+                gameTerrain.Add(new GOgameTerrain(-1+(i/10f), -1f, 0.1f, (newHeight+0.2f), 0.1f, 0.6f, 0.1f, 1.0f));
+                oldHeight = newHeight;
+            }
         }
 
         #endregion
@@ -243,6 +269,7 @@ namespace MyGame
                     break;
 
                 case (gameState.Game):
+                    renderGameObjects(gameTerrain);
                     break;
             }
 
