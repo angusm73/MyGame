@@ -24,6 +24,19 @@ namespace MyGame
             GL.End();
         }
 
+        public void Ground(float x, float sx, float sly, float sry, float alpha)
+        {
+            GL.Begin(PrimitiveType.Quads);
+
+            GL.Color4(0.1f, 0.6f, 0.1f, alpha);
+            GL.Vertex2(x, -1.7f);
+            GL.Vertex2(x + sx, -1.7f);
+            GL.Vertex2(x + sx, sry - 0.7f);
+            GL.Vertex2(x, sly - 0.7f);
+
+            GL.End();
+        }
+        //draw.Ground(x, sx, y, sy, a);
         void Circle(float cx, float cy, float r, int num_segments)
         {
             double theta = 2 * 3.1415926 / Convert.ToDouble(num_segments);

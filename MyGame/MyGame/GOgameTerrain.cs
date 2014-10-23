@@ -22,7 +22,7 @@ namespace MyGame
         public override void render()
         {
             DrawShape draw = new DrawShape();
-            draw.Square(x, y, sx, sy, r, g, b, a);
+            draw.Ground(x, sx, y, sy, a);
         }
     }
 }

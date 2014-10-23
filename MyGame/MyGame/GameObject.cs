@@ -8,7 +8,7 @@ namespace MyGame
 {
     abstract class GameObject
     {
-        public float x, y, sx, sy, r, g, b, a;
+        public float x, y, sx, sy, sly, sry, r, g, b, a;
 
         public GameObject(float x, float y, float sx, float sy, float r, float g, float b, float a)
         {

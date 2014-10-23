@@ -26,7 +26,7 @@ namespace MyGame
                         flag = true;
                     }
                 }
-                gameTerrain.Add(new GOgameTerrain(-1 + (i / 10f), -1f, (sections/200f), (newHeight + 0.2f), 0.1f, 0.6f, 0.1f, 1.0f));
+                gameTerrain.Add(new GOgameTerrain(-1 + (i / 10f), oldHeight, (sections/200f), newHeight, 0.1f, 0.6f, 0.1f, 1.0f));
                 oldHeight = newHeight;
             }
         }
