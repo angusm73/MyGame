@@ -125,6 +125,11 @@ namespace MyGame
 
             Title = "My OpenTK Game";
 
+            Matrix4 modelview = Matrix4.LookAt(Vector3.Zero, Vector3.UnitZ, Vector3.UnitY);
+            GL.MatrixMode(MatrixMode.Modelview);
+            GL.LoadMatrix(ref modelview);
+            GL.Rotate(180, new Vector3(0, 1, 0));
+
             GL.ClearColor(Color.CornflowerBlue);
             GL.Disable(EnableCap.DepthTest);
             GL.Clear(ClearBufferMask.DepthBufferBit);
