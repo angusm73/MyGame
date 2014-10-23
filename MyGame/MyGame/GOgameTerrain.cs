@@ -24,5 +24,10 @@ namespace MyGame
             DrawShape draw = new DrawShape();
             draw.Ground(x, sx, y, sy, a);
         }
+
+        public float getY()
+        {
+            return y;
+        }
     }
 }
