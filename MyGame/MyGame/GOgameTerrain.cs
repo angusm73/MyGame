@@ -21,7 +21,6 @@ namespace MyGame
             {
                 MyGameWindow.player.vy = 0;
             }
-            Console.WriteLine(1 - ((MyGameWindow.player.y-1) * -1) + " : " + this.getY(MyGameWindow.player.x));
         }
 
         public override void render()
@@ -32,13 +31,13 @@ namespace MyGame
 
         public float getY(double x)
         {
-            if (x > this.x && this.x + this.sx > x)
+            if (x <= this.x && x <= (this.x + this.sx))
             {
-                return y+sy;
+                return -1 + y + sy;
             }
             else
             {
-                return -1+y+sy;
+                return -1;
             }
         }
     }

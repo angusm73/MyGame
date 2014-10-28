@@ -24,7 +24,7 @@ namespace MyGame
         public static WindowState winState = WindowState.Normal;
         public static gameState currentGameState = gameState.Menu;
 
-        public static GOplayer player = new GOplayer(0f, 0f, 0.1f, 0.1f, 0.6f, 0.1f, 0.5f, 1.0f);
+        public static GOplayer player = new GOplayer(0.1f, 0f, 0.1f, 0.1f, 0.6f, 0.1f, 0.5f, 1.0f);
         public Random rand = new Random();
 
         public MyGameWindow() : base(800, 600, new OpenTK.Graphics.GraphicsMode(32, 0, 0, 16))
