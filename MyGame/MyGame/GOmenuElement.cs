@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyGame
 {
-    class GOmenuElement : GameObject
+    public class GOmenuElement : GameObject
     {
         public GOmenuElement(float x, float y, float sx, float sy, float r, float g, float b, float a) : base(x, y, sx, sy, r, g, b, a)
         {

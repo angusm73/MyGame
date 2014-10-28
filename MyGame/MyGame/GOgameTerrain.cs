@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyGame
 {
-    class GOgameTerrain : GameObject
+    public class GOgameTerrain : GameObject
     {
         public GOgameTerrain(float x, float y, float sx, float sy, float r, float g, float b, float a) : base(x, y, sx, sy, r, g, b, a)
         {
@@ -17,6 +17,11 @@ namespace MyGame
         {
             // these are static objects at the moment that dont need to be updated just yet
             // probably will need to add shit here for ground collision/physics
+            if (1-((MyGameWindow.player.y-1)*-1) <= this.getY(MyGameWindow.player.x))
+            {
+                MyGameWindow.player.vy = 0;
+            }
+            Console.WriteLine(1 - ((MyGameWindow.player.y-1) * -1) + " : " + this.getY(MyGameWindow.player.x));
         }
 
         public override void render()
@@ -25,9 +30,16 @@ namespace MyGame
             draw.Ground(x, sx, y, sy, a);
         }
 
-        public float getY()
+        public float getY(double x)
         {
-            return y;
+            if (x > this.x && this.x + this.sx > x)
+            {
+                return y+sy;
+            }
+            else
+            {
+                return -1+y+sy;
+            }
         }
     }
 }

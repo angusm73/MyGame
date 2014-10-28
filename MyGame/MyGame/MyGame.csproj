@@ -51,6 +51,7 @@
     <Compile Include="GObutton.cs" />
     <Compile Include="GOgameTerrain.cs" />
     <Compile Include="GOmenuElement.cs" />
+    <Compile Include="GOplayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WriteLog.cs" />

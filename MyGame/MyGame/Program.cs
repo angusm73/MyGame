@@ -24,6 +24,7 @@ namespace MyGame
         public static WindowState winState = WindowState.Normal;
         public static gameState currentGameState = gameState.Menu;
 
+        public static GOplayer player = new GOplayer(0f, 0f, 0.1f, 0.1f, 0.6f, 0.1f, 0.5f, 1.0f);
         public Random rand = new Random();
 
         public MyGameWindow() : base(800, 600, new OpenTK.Graphics.GraphicsMode(32, 0, 0, 16))
@@ -169,6 +170,14 @@ namespace MyGame
 
         #region OnUpdateFrame
 
+        private void updateGameObjects<T>(List<T> gameObjectList, double xper, double yper) where T : GameObject
+        {
+            foreach (GameObject go in gameObjectList)
+            {
+                go.update(xper, yper);
+            }
+        }
+
         /// <summary>
         /// Add your game logic here.
         /// </summary>
@@ -203,6 +212,8 @@ namespace MyGame
                     break;
 
                 case (gameState.Game):
+                    player.update(xper, yper);
+                    updateGameObjects(gameTerrain, xper, yper);
                     break;
 
                 default:
@@ -257,6 +268,7 @@ namespace MyGame
 
                 case (gameState.Game):
                     renderGameObjects(gameTerrain);
+                    player.render();
                     break;
             }
 

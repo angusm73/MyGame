@@ -10,7 +10,7 @@ using OpenTK.Input;
 
 namespace MyGame
 {
-    class GObutton : GameObject
+    public class GObutton : GameObject
     {
         Font font = new Font(FontFamily.GenericMonospace, 18.0f);
         OpenTK.Graphics.TextPrinter tp = new OpenTK.Graphics.TextPrinter(OpenTK.Graphics.TextQuality.High);
