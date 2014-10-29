@@ -31,9 +31,9 @@ namespace MyGame
 
         public float getY(double x)
         {
-            if (x <= this.x && x <= (this.x + this.sx))
+            if (x >= this.x && x <= (this.x + this.sx))
             {
-                return -1 + y + sy;
+                return -0.7f + sy;
             }
             else
             {
